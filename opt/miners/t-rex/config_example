@@ -2,33 +2,23 @@
   // List of main and failover pools
   "pools": [
     {
-      "user": "1MKrTujwHxda6knL8hHrPMi7Git4upX56E", // wallet address
-      "url": "stratum+tcp://pool.minermore.com:4501", // pool stratum (US)
+      "user": "RBX1G6nYDMHVtyaZiQWySMZw1Bb2DEDpT8", // wallet address
+      "url": "stratum+tcp://us.rvn.minermore.com:4501", // DNS round robin pointing to all stratum servers in the US
       "pass": "x" // password
     },
     {
       "user": "CHANGETHIS.worker",
-      "url": "stratum+tcp://ca.minermore.com:4501", // <-- Montreal Canada
+      "url": "stratum+tcp://ca.rvn.minermore.com:4501", // <-- Toronto, Canada
       "pass": "x"
     },
     {
       "user": "CHANGETHIS.worker",
-      "url": "stratum+tcp://pool.minermore.com:5501", // <-- US
+      "url": "stratum+tcp://eu.rvn.minermore.com:4501", // <-- DNS round robin pointing to all stratum servers in Europe. (UK, FR, DE, and NL)
       "pass": "x"
     },
     {
       "user": "CHANGETHIS.worker",
-      "url": "stratum+tcp://eu.minermore.com:4501", // <-- Frankfurt, Germany
-      "pass": "x"
-    },
-    {
-      "user": "CHANGETHIS.worker",
-      "url": "stratum+tcp://eu.minermore.com:5501", // <-- Frankfurt, Germany
-      "pass": "x"
-    },
-    {
-      "user": "CHANGETHIS.worker",
-      "url": "stratum+tcp://hk.minermore.com:4501", // <-- Hong Kong
+      "url": "stratum+tcp://hk.rvn.minermore.com:4501", // <-- Hong Kong
       "pass": "x"
     }
   ],
@@ -49,10 +39,10 @@
   "retry-pause": 10,
 
   // Maximum time in seconds your pool connection may have no ping. After that reconnect will happen.
-  "timeout": 180,
+  "timeout": 300,
 
   // Name of mining algorithm. You can see available names at the top of the help file.
-  "algo": "x16r",
+  "algo": "x16rv2",
   
   // This is GPU index in the system. You can select multiple GPUs sequentially: "devices": "0,2,3"
   "devices": 0, // Use only the first GPU in your rig. Remove this parameter to use all GPUs
@@ -94,11 +84,21 @@
   // Disable color output for console
   "no-color": false,
 
+  // Don't show date in console.
+  "hide-date": false,
+
   // Disable NVML GPU stats. If set, temperature limit and temperature start won't affect miner work.
   "no-nvml": false,
+  
+  // Disable built-in watchdog (to disable set to "true").
+  "no-watchdog": false,              
 
   // Quiet mode. No GPU stats at all.
   "quiet": false,
+
+  // Fork upon a condition
+  // "fork-at": "x16rv2=2019-10-01T16:00:00", // fork to x16v2 at 2019-10-01 16:00:00 UTC
+  // "fork-at": "skunk=277731", // fork to skunk when reaching 277731 block
 
   // Shutdown miner after timeout in sec. By default disabled. (set to 0)
   "time-limit": 0,

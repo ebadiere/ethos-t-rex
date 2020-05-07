@@ -2,17 +2,18 @@
 t-rex miner integration into EthOS mining distro.
 
 Works with ethos 1.3.3, other versions has not been tested. Default algo is x16r.
+Forked from https://github.com/asluchevskiy/ethos-t-rex
 
 ## install
 
 Run this command to install or full update:
 ```
-wget -O - https://raw.githubusercontent.com/asluchevskiy/ethos-t-rex/master/install.sh | sh
+wget -O - https://raw.githubusercontent.com/ebadiere/ethos-t-rex/master/install.sh | sh
 ```
 ### update
 To only update miner to the latest verion, run:
 ```
-wget -O - https://raw.githubusercontent.com/asluchevskiy/ethos-t-rex/master/update-miner.sh | sh
+wget -O - https://raw.githubusercontent.com/ebadiere/ethos-t-rex/master/update-miner.sh | sh
 ```
 
 ### manual update
@@ -24,8 +25,8 @@ disallow
 This will disable and stop mining. Wait for 15 seconds. Then use the correct URL with latest t-rex version for linux and cuda10 and unpack it:
 ```
 cd /opt/miners/t-rex
-sudo wget https://github.com/trexminer/T-Rex/releases/download/0.8.3/t-rex-0.8.3-linux-cuda10.0.tar.gz
-sudo tar xvf t-rex-0.8.3-linux-cuda10.0.tar.gz
+sudo wget https://github.com/trexminer/T-Rex/releases/download/0.15.4/t-rex-0.15.4-linux-cuda10.0.tar.gz
+sudo tar xvf t-rex-0.15.4-linux-cuda10.0.tar.gz
 ```
 Then enable mining again:
 ```

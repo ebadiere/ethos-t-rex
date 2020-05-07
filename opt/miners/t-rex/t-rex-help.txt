@@ -9,44 +9,57 @@ settings before you start mining. Our general recommendation is to start
 from GPU stock settings	(no overclock, default power limit), and then after
 making sure it is stable, slowly increase your overclock to find the
 "sweet spot" where the miner performs at its best and still does not crash.
-		
+
 
 Usage of command line options
 Options:
     -a, --algo                     Specify the hash algorithm to use.
-                                    astralhash
-                                    balloon
-                                    bcd
-                                    bitcore
-                                    c11
-                                    dedal
-                                    geek
-                                    hmq1725
-                                    jeonghash
-                                    lyra2z
-                                    padihash
-                                    pawelhash
-                                    phi
-                                    polytimos
-                                    sha256t
-                                    skunk
-                                    sonoa
-                                    timetravel
-                                    tribus
-                                    x16r
-                                    x16s
-                                    x17
-                                    x21s
-                                    x22i
+                                   astralhash
+                                   balloon
+                                   bcd
+                                   bitcore
+                                   c11
+                                   dedal
+                                   geek
+                                   hmq1725
+                                   honeycomb
+                                   jeonghash
+                                   lyra2z
+                                   mtp
+                                   padihash
+                                   pawelhash
+                                   progpow
+                                   phi
+                                   polytimos
+                                   sha256q
+                                   sha256t
+                                   skunk
+                                   sonoa
+                                   tensority
+                                   timetravel
+                                   tribus
+                                   x16r
+                                   x16rt
+                                   x16rv2
+                                   x16s
+                                   x17
+                                   x21s
+                                   x22i
+                                   x25x
+        --coin                     [ProgPOW] Set coin name.
+        --nonce-start              [ProgPOW] Starting nonce for the solution search.
+        --nonce-range-size         [ProgPOW] Nonce range size for nonce search. The range will be split between all devices.
     -d, --devices                  Comma separated list of CUDA devices to use.
                                    Device IDs start counting from 0.
+        --ab-indexing              Afterburner indexing (Sort devices by bus ID. First device starts with 1).
     -i, --intensity                GPU intensity 8-25 (default: auto).
+
     -o, --url                      URL of mining server.
     -u, --user                     Username for mining server.
     -p, --pass                     Password for mining server.
     -r, --retries                  Number of times to retry if a network call fails.
     -R, --retry-pause              Pause in seconds between retries.
-    -T, --timeout                  Network timeout, in seconds (default: 180)
+    -T, --timeout                  Network timeout, in seconds (default: 300)
         --time-limit               Miner shutdown interval in seconds. (default: 0 - disabled)
 
         --temperature-color        Set temperature color for GPUs stat. Example: 55,65 - it means that
@@ -62,8 +75,11 @@ Options:
         --sharerate-avr            Sliding window length in seconds used to compute sharerate (default: 600).
         --gpu-report-interval      GPU stats report frequency. (default: 5. every 5th share)
     -q, --quiet                    Quiet mode. No GPU stats at all.
+        --hide-date                Don't show date in console.
         --no-color                 Disable color output for console.
         --no-nvml                  Disable NVML GPU stats.
+        --no-watchdog              Disable built-in watchdog.
+    
     -B, --benchmark                Benchmark mode.
     -P, --protocol-dump            User protocol logging.
     -c, --config                   Load a JSON-format configuration file.
@@ -77,6 +93,13 @@ Options:
         --exit-on-connection-lost  Forces miner to immediately exit on connection lost.
         --reconnect-on-fail-shares Forces miner to immediately reconnect to pool on N successively failed shares (default: 10).
 
+        --fork-at                  Forces miner to change algorithm on predefined condition. 
+                                   Time condition: algo_name=YYYY-MM-DDTHH:MM:SS (eg: --fork-at x16rv2=2019-10-01T16:00:00).
+                                   Time must be set in UTC+0.
+                                   Block condition: algo_name=integer_block_number (eg: --fork-at x16rv2=6526421).
+                                   To change main pool port you must write it right after algo: algo_name:integer_port_number 
+                                   (eg: --fork-at x16rv2:4081=2019-10-01T16:00:00).
+                                   
         --version                  Display version information and exit.
     -h, --help                     Display this help text and exit.
 
@@ -86,11 +109,10 @@ To start T-Rex with config file "config.txt" type in console: t-rex -c config.tx
 
 Use "config_example" file as a starting point to create your own config.
 
-============================================ WATCHDOG USAGE ============================================
+============================================ WATCHDOG ==================================================
 
 Watchdog is intended to observe miner state and restart T-Rex if it crashes or hungs for any reason.
 Also, watchdog can optionally perform auto updates if a newer version is available.
-Use watchdog as you use T-Rex. Simply replace t-rex.exe with watchdog.exe in your bat/script file in order to use it.
 We recommend using the watchdog to avoid any downtime in mining and make sure your GPUs are busy 24/7.
 
 ============================================ HTTP API USAGE ============================================
@@ -104,6 +126,10 @@ Common example of request structure: http://your_ip:your_port/handler_name
 
 Handler "trex" is intended to show miner control monitoring page in your web browser. You can see miner stats realtime and also change miner parameters and config on the fly. Also here you will see updates in case it appears.
 To activate the handler navigate to http://127.0.0.1:4067/trex using a web browser.
+
+==[ LOG ]==
+Displays the contents of the log file (if configured).
+To activate the handler navigate to http://127.0.0.1:4067/log using a web browser.
 
 ==[ CONFIG ]==
 

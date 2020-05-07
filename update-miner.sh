@@ -1,6 +1,6 @@
 TMP_DIR=/tmp/ethos-t-rex
 mkdir $TMP_DIR
-git -C $TMP_DIR clone https://github.com/asluchevskiy/ethos-t-rex.git
+git -C $TMP_DIR clone https://github.com/ebadiere/ethos-t-rex.git
 disallow
 minestop
 echo 'waiting for 15 seconds before continue'
